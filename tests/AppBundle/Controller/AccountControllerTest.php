@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Command;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -117,10 +116,10 @@ class AccountControllerTest extends WebTestCase
     protected function tearDown()
     {
         parent::tearDown();
-        $urls = $this->entityManager->getRepository("AppBundle:User")->findAll();
-        foreach($urls as $url)
+        $users = $this->entityManager->getRepository("AppBundle:User")->findAll();
+        foreach($users as $user)
         {
-            $this->entityManager->remove($url);
+            $this->entityManager->remove($user);
         }
         $this->entityManager->flush();
 
