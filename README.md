@@ -2,7 +2,7 @@
 
 I created this task using Symfony3.4
 
-###Installation 
+### Installation 
 - clone project and got project directory in terminal
 - run `composer install` 
 - you will be prompeted to add some params needed for the project
