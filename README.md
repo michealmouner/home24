@@ -9,6 +9,8 @@ I created this task using Symfony3.4
 - make sure that `var/cache` , `var/logs` , and `var/sessions` has r/w permission
 - create database or run `bin/console doctrine:database:create --env test`
 - create database or run `bin/console doctrine:database:create --env prod`
+- run `bin/console doctrine:migrations:migrate -n`
+- run `bin/console doctrine:migrations:migrate -n --env test`
 - run `bin/console doctrine:fixtures:load`
 - run `composer test`
 - finally run `bin/console server:run`
@@ -25,7 +27,7 @@ I created this task using Symfony3.4
 - `DELETE /api/posts/{id}/delete`
 
 ### APIs details
-you can use this url `http://localhost:8000/api/doc`  
+you can use this url `/api/doc` [on top-right add the apikey (default is `123`)]  
 or  
 you can use postman `var/postman` two files attached environment and APIs structure  
 
