@@ -7,11 +7,11 @@ I created this task using Symfony3.4
 - run `composer install` 
 - you will be prompeted to add some params needed for the project
 - make sure that `var/cache` , `var/logs` , and `var/sessions` has r/w permission
-- create database or run `bin/console doctrine:database:create --env test`
-- create database or run `bin/console doctrine:database:create --env prod`
-- run `bin/console doctrine:migrations:migrate -n`
-- run `bin/console doctrine:migrations:migrate -n --env test`
-- run `bin/console doctrine:fixtures:load`
+- create test database DBNAME_test or run `bin/console doctrine:database:create --env test`
+- create prod/dev database DBNAME or run `bin/console doctrine:database:create --env prod`
+- run `bin/console doctrine:migrations:migrate -n` => create tables for DBNAME
+- run `bin/console doctrine:migrations:migrate -n --env test` => create tables for DBNAME_test
+- run `bin/console doctrine:fixtures:load` => load 3 users and 100 post to prod/dev database
 - run `composer test`
 - finally run `bin/console server:run`
 
@@ -57,3 +57,4 @@ I use file_system caching to not use PHP extention (like memecache and apc) just
 ### Notes
 - PHPUnitTest for login & profile (simple)
 - some time postman token expire you need to get new one and update your environment variable
+- feel free to ask me if you faced any problem in running the code
