@@ -1,0 +1,24 @@
+security:
+    encoders:
+        AppBundle\Entity\User: bcrypt
+
+    providers:
+        database_users:
+            entity: { class: AppBundle:User }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api:
+            pattern: ^/api/
+            anonymous: true
+            stateless: true
+            guard:
+                authenticators:
+                    - 'jwt_token_authenticator'
+
+    access_control:
+        # allow anonymous API - if auth is needed, it's handled in the controller
+        - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }

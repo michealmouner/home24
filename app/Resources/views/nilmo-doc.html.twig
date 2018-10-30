@@ -1,0 +1,37 @@
+<div id="resources_container" class="container">
+    <ul id="resources">
+        <li class="section active">
+            <div class="actions">
+                <a class="action-show-hide">Show/hide</a>
+            </div>
+            <h1>Welcome to the API documentation</h1>
+
+            <div class="section-list">
+                <h2>General Information about the API:</h2>
+                <br>
+                <p>- To login the user first send the username and password as hashed string in the Authorization header password.</p>
+                <p>- Encode the username and password string "username:password" in <a href="http://base64encode.net/" target="_blank">base64</a> format </p>
+                <pre>Authorization: Basic {base64-hash}</pre>
+                <br/>
+                <p>- Default sample user </p>
+                <pre>
+{
+    "email": "john@gmail.com",
+    "phone": "1234567890",
+    "password": "password"
+}</pre>
+
+                <p>
+                    - All requests that require logged in user will require an authorization header like this one <code>Authorization: Bearer {TOKEN}</code> if the header is missing or the token is invalid you will receive a response with content like this one:
+                    <pre>
+{
+  "message": "Invalid Token",
+  "status": "failure",
+  "code": 200,
+  "title": "OK"
+}</pre>
+                <p>Thank you for reading.</p>
+            </div>
+        </li>
+    </ul>
+</div>

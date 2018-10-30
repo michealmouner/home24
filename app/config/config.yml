@@ -1,0 +1,142 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi: ~
+    templating:
+        engines: ['twig']
+
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: false
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        
+        metadata_cache_driver:
+            type: service
+            id: doctrine_cache.providers.vendor_filesystem_metadata_cache
+        result_cache_driver:
+            type: service
+            id: doctrine_cache.providers.vendor_filesystem_result_cache
+        query_cache_driver:
+            type: service
+            id: doctrine_cache.providers.vendor_filesystem_query_cache
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+lexik_jwt_authentication:
+    secret_key:       '%kernel.project_dir%/config/jwt/private.pem' # required for token creation
+    public_key:       '%kernel.project_dir%/config/jwt/public.pem'  # required for token verification
+    pass_phrase:      'your_secret_passphrase' # required for token creation, usage of an environment variable is recommended
+    token_ttl:        2592000
+    
+    
+nelmio_api_doc:
+    name: 'Home 24 core API documentation'
+    motd:
+        template: nilmo-doc.html.twig
+    request_listener:
+        enabled: false
+    sandbox:
+        authentication:
+            name: X-Api-Key
+            delivery: header
+            type: bearer
+
+        body_format:                # remove all elements to disable the selectbox
+            formats: [form,json]
+            default_format: form                # default is `form`, determines whether to send
+                                                # `x-www-form-urlencoded` data or json-encoded
+                                                # data (by setting this parameter to `json`) in
+        request_format:
+            method: accept_header
+            
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            timestampable: true # not needed: listeners are not enabled by default
+            blameable: true # not needed: listeners are not enabled by default
+
+doctrine_cache:
+    aliases:
+        vendor_filesystem_query_cache: vendor_filesystem_query_cache
+        vendor_filesystem_result_cache: vendor_filesystem_result_cache
+        vendor_filesystem_metadata_cache: vendor_filesystem_metadata_cache
+
+        
+    providers:
+        vendor_filesystem_metadata_cache:
+            file_system:
+                extension: cache
+                directory: "%kernel.root_dir%/../var/cache/doctrine"
+            aliases:
+                - file_system_metadata_cache
+        vendor_filesystem_result_cache:
+            file_system:
+                extension: cache
+                directory: "%kernel.root_dir%/../var/cache/doctrine"
+            aliases:
+                - file_system_result_cache
+        vendor_filesystem_query_cache:
+            file_system:
+                extension: cache
+                directory: "%kernel.root_dir%/../var/cache/doctrine"
+            aliases:
+                - file_system_query_cache

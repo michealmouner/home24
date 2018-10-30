@@ -1,0 +1,408 @@
+{
+	"info": {
+		"name": "Home24",
+		"_postman_id": "9737bc15-3c3c-413c-8873-4c89a71a62f2",
+		"description": "login and profile apis\nalso, CRUD for posts table",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"description": null,
+			"item": [
+				{
+					"name": "Get All Posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user_1@home24.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/app_dev.php/api/posts?limit=10&offset=0&order_by[id]=DESC&filters[isPublished]=1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"app_dev.php",
+								"api",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"equals": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "order_by[id]",
+									"value": "DESC",
+									"equals": true
+								},
+								{
+									"key": "filters[isPublished]",
+									"value": "1",
+									"equals": true,
+									"description": "0 | 1"
+								}
+							]
+						},
+						"description": "login to one of the users"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user_1@home24.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/app_dev.php/api/posts/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"app_dev.php",
+								"api",
+								"posts",
+								"1"
+							]
+						},
+						"description": "login to one of the users"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user_1@home24.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/app_dev.php/api/posts/50/delete",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"app_dev.php",
+								"api",
+								"posts",
+								"50",
+								"delete"
+							]
+						},
+						"description": "login to one of the users"
+					},
+					"response": []
+				},
+				{
+					"name": "Create post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test title",
+									"type": "text"
+								},
+								{
+									"key": "details",
+									"value": "test details",
+									"type": "text"
+								},
+								{
+									"key": "isPublished",
+									"value": "0",
+									"description": "0 | 1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/app_dev.php/api/posts/add",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"app_dev.php",
+								"api",
+								"posts",
+								"add"
+							]
+						},
+						"description": "login to one of the users"
+					},
+					"response": []
+				},
+				{
+					"name": "Update post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{x-api-key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "12344543543",
+									"type": "text"
+								},
+								{
+									"key": "details",
+									"value": "test1234",
+									"type": "text"
+								},
+								{
+									"key": "isPublished",
+									"value": "0",
+									"type": "text",
+									"description": "0 | 1"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/app_dev.php/api/posts/1/update",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"app_dev.php",
+								"api",
+								"posts",
+								"1",
+								"update"
+							]
+						},
+						"description": "login to one of the users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "user_1@home24.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/api/login",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "login to one of the users"
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "user_1@home24.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/api/profile",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"profile"
+					]
+				},
+				"description": "login to one of the users"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "Bearer sdsaddsasd",
+				"type": "string"
+			}
+		]
+	}
+}
